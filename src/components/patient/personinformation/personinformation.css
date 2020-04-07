@@ -1,0 +1,12 @@
+.layout{
+  border: 1px solid #d7dde4;
+  background: #f5f7f9;
+}
+.layout-content{
+  min-height: 200px;
+  overflow: hidden;
+  background: #fff;
+}
+.layout-content-main{
+  padding: 10px;
+}
