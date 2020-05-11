@@ -6,7 +6,7 @@
   >
     <div class="bg" id="bg" :style="{height: mapHeight}">
 
-      <div class="login" style="margin-top:210px;margin-left: 65%;  " v-if="true">
+      <div class="login" style="margin-top:5%;margin-left: 65%;  " v-if="true">
         <div class="header">
           <div class="switch" id="switch">
             <a class="switch_btn_focus" id="switch_qlogin"  tabindex="7" @click="changetag(0)" >快速登录</a>
@@ -23,6 +23,11 @@
             <i-input type="password" v-model="formCustom.password" style="width: 250px">
             </i-input>
           </FormItem>
+          <FormItem>
+            <Select v-model="flag3" style="width:250px">
+              <Option v-for="item in list" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </FormItem>
           <FormItem >
             <Button type="primary" @click="login"  style="margin-left: 2%">登录</Button>
             <Button type="ghost" @click="reset" style="margin-left: 5%">重置</Button>
@@ -34,12 +39,24 @@
             <i-input type="text" v-model="registerCustom.name" style="width: 250px" >
             </i-input>
           </FormItem>
+          <FormItem label="性别：" prop="gender" style="margin-top: 20px">
+            <Select v-model="registerCustom.gender" style="width:250px">
+              <Option v-for="item in genderlist" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </FormItem>
+          <FormItem label="出生日期：" prop="birthday">
+            <DatePicker type="date" placeholder="Select date" style="width: 250px" v-model="registerCustom.birthday"></DatePicker>
+          </FormItem>
           <FormItem label="身份证号：" prop="idnumber">
             <i-input type="text" v-model="registerCustom.idnumber" style="width: 250px">
             </i-input>
           </FormItem>
           <FormItem label="手机号：" prop="phone">
             <i-input type="text" v-model="registerCustom.phone" style="width: 250px">
+            </i-input>
+          </FormItem>
+          <FormItem label="家庭住址：" prop="homeaddress">
+            <i-input type="text" v-model="registerCustom.homeaddress" style="width: 250px">
             </i-input>
           </FormItem>
           <FormItem label="登录名：" prop="loginname">
@@ -69,23 +86,46 @@
       return {
         flag1 : true,
         flag2 : false,
+        flag3:"",//用来区分医院员工与患者的登录
+        genderlist: [//选择内容
+          {
+            value: '1',
+            label: '男'
+          },
+          {
+            value:'2',
+            label:'女'
+          },
+        ],
+        list: [//选择内容
+          {
+            value: '医院员工',
+            label: '医院员工'
+          },
+          {
+            value:'患者',
+            label:'患者'
+          }
+        ],
         formCustom: {
           userID: '',
           password: '',
         },
         registerCustom:{
+          birthday:"",//出生日期
+          gender:"",//性别
           name:'',//患者真实姓名
           idnumber:'',//患者身份证号
           phone:'',//患者手机号
           loginname:'',//患者登陆名
           password:'',//患者密码
+          homeaddress:"",//家庭住址
         }
       }
     },
     computed: {
       //计算浏览器的高度
       mapHeight() {return $(window).height() +'px'}
-
     },
     methods: {
       //注册
@@ -101,8 +141,7 @@
         }else if(this.registerCustom.password == ""){
           this.$Message.error("密码不能为空");
         }else {
-          register(this.registerCustom.name, this.registerCustom.idnumber, this.registerCustom.phone,
-            this.registerCustom.loginname, this.registerCustom.password)
+          register(this)
         }
       },
       //登录
@@ -112,8 +151,10 @@
         }else if(this.formCustom.password == ""){
           this.$Message.error("密码不能为空！");
         }else {
-          login(this.formCustom.userID,this.formCustom.password,this.$router)
+          login(this.formCustom.userID,this.formCustom.password,this.flag3,this.$router,this)
         }
+        this.formCustom.userID=''
+        this.formCustom.password=''
       },
       //重置
       reset(){
@@ -122,7 +163,11 @@
       },
       //重置注册
       reset2(){
-
+        this.registerCustom.name=''
+        this.registerCustom.idnumber=''
+        this.registerCustom.loginname=''
+        this.registerCustom.password=''
+        this.registerCustom.phone=''
       },
       //进行切换
       changetag(num) {

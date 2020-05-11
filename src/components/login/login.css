@@ -81,7 +81,7 @@ input::-ms-clear {
 }
 #switch_bottom {
   position:absolute;
-  bottom:-1px;_bottom:-2px;
+  bottom:-1px;
   border-bottom:2px solid #848484;
 }
 

@@ -1,5 +1,4 @@
 .layout{
-  border: 1px solid #d7dde4;
   background: #f5f7f9;
 }
 .layout-content{
@@ -9,4 +8,7 @@
 }
 .layout-content-main{
   padding: 10px;
+}
+.label{
+  font-size: 45px;
 }
