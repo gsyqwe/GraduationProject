@@ -11,9 +11,9 @@
           <Icon type="ios-keypad"></Icon>
           个人信息
         </Menu-item>
-        <Menu-item name="3">
+        <Menu-item name="3" @click.native="during">
           <Icon type="ios-analytics"></Icon>
-          历史病例
+          正在看诊中
         </Menu-item>
       </div>
     </Menu>
@@ -47,6 +47,7 @@
   import {personinformation} from "./acceptregister"
   import {getRegister} from "./acceptregister";
   import {admit} from "./acceptregister";
+  import {during} from "./acceptregister";
 
   export default {
     data(){
@@ -67,6 +68,10 @@
       //跳转到医生个人信息界面
       personinformation(){
         personinformation(this.$router)
+      },
+      //跳转到正在看诊界面
+      during(){
+        during(this.$router)
       },
       //进行看诊
       admit(i){

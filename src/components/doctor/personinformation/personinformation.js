@@ -31,9 +31,14 @@ function getPersonInformation(id,self) {
     self.$Message.error(error.response.data.message)
   })
 }
+//跳转到正在看诊的界面
+function during(route) {
+  route.push("/during")
+}
 
 export {
   register,
   getPersonInformation,
-  personinformation
+  personinformation,
+  during
 }

@@ -7,6 +7,7 @@ import checkcases from '@/components/patient/cases/cases.vue'
 import Doctor from '@/components/doctor/personinformation/personinformation.vue'
 import Admit from '@/components/doctor/acceptregister/acceptregister.vue'
 import Diagnose from '@/components/doctor/diagnose/diagnose.vue'
+import During from '@/components/doctor/cases/cases.vue'
 
 Vue.use(Router)
 export default new Router({
@@ -45,6 +46,11 @@ export default new Router({
       path:"/diagnose",
       name:"diagnose",
       component:Diagnose
+    },
+    {
+      path:"/during",
+      name:"during",
+      component:During
     }
   ]
 })
