@@ -16,6 +16,8 @@ function login(userID,password,flag3,route,self) {
       window.localStorage.setItem("userID",response.data.id)
       if (typid == 2){
         route.push("/doctor")
+      }else if (typid == 7){
+        route.push("/adddoctor")
       }
     }).catch(function (error) {
       self.$Message.error(error.response.data.message)
