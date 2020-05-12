@@ -80,7 +80,7 @@
     },
     created() {
       this.userId = window.localStorage.getItem("userID")
-      this.medicalrecordid = window.localStorage.getItem("registrationId")
+      this.medicalrecordid = window.localStorage.getItem("medicalrecordid")
       getAllFmedItems(this)
     },
     methods:{

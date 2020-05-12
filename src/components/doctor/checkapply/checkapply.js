@@ -44,6 +44,8 @@ function addcheck(self) {
       })
     }
     self1.$Message.success("恭喜添加成功")
+    self.checkapplyCustom.objective = ""
+    self.checkapplydetail.splice(0,self.checkapplydetail.length)
   })
 }
 

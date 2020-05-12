@@ -34,6 +34,7 @@
     created() {
       this.userId = window.localStorage.getItem("userID")
       //通过挂号id找到病例id
+      this.medicalrecordid = window.localStorage.getItem("medicalrecordid")
     },
     methods:{
       //跳转到诊断界面
